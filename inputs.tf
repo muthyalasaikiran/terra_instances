@@ -95,3 +95,11 @@ variable "pro_config" {
   }
 
 }
+
+# creating variable for keypair 
+
+variable "public_key_path" {
+  type    = string
+  default = "~/.ssh/id_rsa.pub"
+
+}
