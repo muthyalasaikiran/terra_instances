@@ -103,3 +103,18 @@ variable "public_key_path" {
   default = "~/.ssh/id_rsa.pub"
 
 }
+
+# creating variable for ami 
+variable "ubuntu_ami_id" {
+  type    = string
+  default = "ami-0c7217cdde317cfec"
+
+}
+
+# variable for instance size 
+
+
+variable "app_ec2_size" {
+  type    = string
+  default = "t2.micro"
+}
