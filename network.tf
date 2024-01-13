@@ -20,3 +20,13 @@ resource "aws_subnet" "subnets" {
     Name = var.subnames[count.index]
   }
 }
+
+# To make this network work we need to create internet gateway and attaching to vpc 
+
+# to kown route table we using data source 
+
+   data "aws_route_table" "default" {
+  vpc_id = aws_vpc.terra_vpc.id
+
+  depends_on = [aws_vpc.terra_vpc]
+}
