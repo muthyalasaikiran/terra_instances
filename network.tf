@@ -30,3 +30,26 @@ resource "aws_subnet" "subnets" {
 
   depends_on = [aws_vpc.terra_vpc]
 }
+
+
+# internet gateway
+
+resource "aws_internet_gateway" "inernetgw" {
+  vpc_id = aws_vpc.terra_vpc.id
+
+  tags = {
+    Name = "internetgw"
+  }
+  depends_on = [aws_vpc.terra_vpc]
+}
+
+
+# attaching internet gateway to route table 
+
+resource "aws_route" "igw_route" {
+  route_table_id         = data.aws_route_table.default.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.inernetgw.id
+  
+  depends_on             = [aws_vpc.terra_vpc, aws_internet_gateway.inernetgw]
+}
